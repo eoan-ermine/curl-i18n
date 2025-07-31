@@ -1,3 +1,9 @@
+# curl-i18n
+
+A fork of curl with support for internationalization of libcurl error messages. Install curl-i18n, install the localization package for the required languages (see https://github.com/eoan-ermine/curl-l10n), and calling `curl_easy_strerror` will return a message not in English, but in the language of the current locale, if the localization package is installed for it, and only otherwise in English.
+
+# curl
+
 <!--
 Copyright (C) Daniel Stenberg, <daniel@haxx.se>, et al.
 

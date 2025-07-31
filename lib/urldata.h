@@ -1743,6 +1743,4 @@ struct Curl_easy {
                                      valid after a client has asked for it */
 };
 
-#define LIBCURL_NAME "libcurl"
-
 #endif /* HEADER_CURL_URLDATA_H */

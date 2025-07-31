@@ -328,6 +328,8 @@
 
 #include <curl/system.h>
 
+#define LIBCURL_NAME "libcurl"
+
 /* Helper macro to expand and concatenate two macros.
  * Direct macros concatenation does not work because macros
  * are not expanded before direct concatenation.
@@ -717,6 +719,10 @@
   !defined(USE_WIN32_IDN) && !defined(USE_APPLE_IDN)
 /* The lib and header are present */
 #define USE_LIBIDN2
+#endif
+
+#if defined(HAVE_GETTEXT)
+#define USE_GETTEXT
 #endif
 
 #if defined(USE_LIBIDN2) && (defined(USE_WIN32_IDN) || defined(USE_APPLE_IDN))

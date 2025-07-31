@@ -42,6 +42,11 @@
 #include "curl_sspi.h"
 #endif
 
+#ifdef USE_GETTEXT
+#include <libintl.h>
+#define _(string) dgettext(LIBCURL_NAME, string)
+#endif
+
 #include "curlx/winapi.h"
 #include "strerror.h"
 /* The last 3 #include files should be in this order */
@@ -55,266 +60,266 @@ curl_easy_strerror(CURLcode error)
 #ifndef CURL_DISABLE_VERBOSE_STRINGS
   switch(error) {
   case CURLE_OK:
-    return "No error";
+    return _("No error");
 
   case CURLE_UNSUPPORTED_PROTOCOL:
-    return "Unsupported protocol";
+    return _("Unsupported protocol");
 
   case CURLE_FAILED_INIT:
-    return "Failed initialization";
+    return _("Failed initialization");
 
   case CURLE_URL_MALFORMAT:
-    return "URL using bad/illegal format or missing URL";
+    return _("URL using bad/illegal format or missing URL");
 
   case CURLE_NOT_BUILT_IN:
-    return "A requested feature, protocol or option was not found built-in in"
-      " this libcurl due to a build-time decision.";
+    return _("A requested feature, protocol or option was not found built-in in"
+      " this libcurl due to a build-time decision.");
 
   case CURLE_COULDNT_RESOLVE_PROXY:
-    return "Could not resolve proxy name";
+    return _("Could not resolve proxy name");
 
   case CURLE_COULDNT_RESOLVE_HOST:
-    return "Could not resolve hostname";
+    return _("Could not resolve hostname");
 
   case CURLE_COULDNT_CONNECT:
-    return "Could not connect to server";
+    return _("Could not connect to server");
 
   case CURLE_WEIRD_SERVER_REPLY:
-    return "Weird server reply";
+    return _("Weird server reply");
 
   case CURLE_REMOTE_ACCESS_DENIED:
-    return "Access denied to remote resource";
+    return _("Access denied to remote resource");
 
   case CURLE_FTP_ACCEPT_FAILED:
-    return "FTP: The server failed to connect to data port";
+    return _("FTP: The server failed to connect to data port");
 
   case CURLE_FTP_ACCEPT_TIMEOUT:
-    return "FTP: Accepting server connect has timed out";
+    return _("FTP: Accepting server connect has timed out");
 
   case CURLE_FTP_PRET_FAILED:
-    return "FTP: The server did not accept the PRET command.";
+    return _("FTP: The server did not accept the PRET command.");
 
   case CURLE_FTP_WEIRD_PASS_REPLY:
-    return "FTP: unknown PASS reply";
+    return _("FTP: unknown PASS reply");
 
   case CURLE_FTP_WEIRD_PASV_REPLY:
-    return "FTP: unknown PASV reply";
+    return _("FTP: unknown PASV reply");
 
   case CURLE_FTP_WEIRD_227_FORMAT:
-    return "FTP: unknown 227 response format";
+    return _("FTP: unknown 227 response format");
 
   case CURLE_FTP_CANT_GET_HOST:
-    return "FTP: cannot figure out the host in the PASV response";
+    return _("FTP: cannot figure out the host in the PASV response");
 
   case CURLE_HTTP2:
-    return "Error in the HTTP2 framing layer";
+    return _("Error in the HTTP2 framing layer");
 
   case CURLE_FTP_COULDNT_SET_TYPE:
-    return "FTP: could not set file type";
+    return _("FTP: could not set file type");
 
   case CURLE_PARTIAL_FILE:
-    return "Transferred a partial file";
+    return _("Transferred a partial file");
 
   case CURLE_FTP_COULDNT_RETR_FILE:
-    return "FTP: could not retrieve (RETR failed) the specified file";
+    return _("FTP: could not retrieve (RETR failed) the specified file");
 
   case CURLE_QUOTE_ERROR:
-    return "Quote command returned error";
+    return _("Quote command returned error");
 
   case CURLE_HTTP_RETURNED_ERROR:
-    return "HTTP response code said error";
+    return _("HTTP response code said error");
 
   case CURLE_WRITE_ERROR:
-    return "Failed writing received data to disk/application";
+    return _("Failed writing received data to disk/application");
 
   case CURLE_UPLOAD_FAILED:
-    return "Upload failed (at start/before it took off)";
+    return _("Upload failed (at start/before it took off)");
 
   case CURLE_READ_ERROR:
-    return "Failed to open/read local data from file/application";
+    return _("Failed to open/read local data from file/application");
 
   case CURLE_OUT_OF_MEMORY:
-    return "Out of memory";
+    return _("Out of memory");
 
   case CURLE_OPERATION_TIMEDOUT:
-    return "Timeout was reached";
+      return _("Timeout was reached");
 
   case CURLE_FTP_PORT_FAILED:
-    return "FTP: command PORT failed";
+    return _("FTP: command PORT failed");
 
   case CURLE_FTP_COULDNT_USE_REST:
-    return "FTP: command REST failed";
+    return _("FTP: command REST failed");
 
   case CURLE_RANGE_ERROR:
-    return "Requested range was not delivered by the server";
+    return _("Requested range was not delivered by the server");
 
   case CURLE_SSL_CONNECT_ERROR:
-    return "SSL connect error";
+    return _("SSL connect error");
 
   case CURLE_BAD_DOWNLOAD_RESUME:
-    return "Could not resume download";
+    return _("Could not resume download");
 
   case CURLE_FILE_COULDNT_READ_FILE:
-    return "Could not read a file:// file";
+    return _("Could not read a file:// file");
 
   case CURLE_LDAP_CANNOT_BIND:
-    return "LDAP: cannot bind";
+    return _("LDAP: cannot bind");
 
   case CURLE_LDAP_SEARCH_FAILED:
-    return "LDAP: search failed";
+    return _("LDAP: search failed");
 
   case CURLE_ABORTED_BY_CALLBACK:
-    return "Operation was aborted by an application callback";
+    return _("Operation was aborted by an application callback");
 
   case CURLE_BAD_FUNCTION_ARGUMENT:
-    return "A libcurl function was given a bad argument";
+    return _("A libcurl function was given a bad argument");
 
   case CURLE_INTERFACE_FAILED:
-    return "Failed binding local connection end";
+    return _("Failed binding local connection end");
 
   case CURLE_TOO_MANY_REDIRECTS:
-    return "Number of redirects hit maximum amount";
+    return _("Number of redirects hit maximum amount");
 
   case CURLE_UNKNOWN_OPTION:
-    return "An unknown option was passed in to libcurl";
+    return _("An unknown option was passed in to libcurl");
 
   case CURLE_SETOPT_OPTION_SYNTAX:
-    return "Malformed option provided in a setopt";
+    return _("Malformed option provided in a setopt");
 
   case CURLE_GOT_NOTHING:
-    return "Server returned nothing (no headers, no data)";
+    return _("Server returned nothing (no headers, no data)");
 
   case CURLE_SSL_ENGINE_NOTFOUND:
-    return "SSL crypto engine not found";
+    return _("SSL crypto engine not found");
 
   case CURLE_SSL_ENGINE_SETFAILED:
-    return "Can not set SSL crypto engine as default";
+    return _("Can not set SSL crypto engine as default");
 
   case CURLE_SSL_ENGINE_INITFAILED:
-    return "Failed to initialise SSL crypto engine";
+    return _("Failed to initialise SSL crypto engine");
 
   case CURLE_SEND_ERROR:
-    return "Failed sending data to the peer";
+    return _("Failed sending data to the peer");
 
   case CURLE_RECV_ERROR:
-    return "Failure when receiving data from the peer";
+    return _("Failure when receiving data from the peer");
 
   case CURLE_SSL_CERTPROBLEM:
-    return "Problem with the local SSL certificate";
+    return _("Problem with the local SSL certificate");
 
   case CURLE_SSL_CIPHER:
-    return "Could not use specified SSL cipher";
+    return _("Could not use specified SSL cipher");
 
   case CURLE_PEER_FAILED_VERIFICATION:
-    return "SSL peer certificate or SSH remote key was not OK";
+    return _("SSL peer certificate or SSH remote key was not OK");
 
   case CURLE_SSL_CACERT_BADFILE:
-    return "Problem with the SSL CA cert (path? access rights?)";
+    return _("Problem with the SSL CA cert (path? access rights?)");
 
   case CURLE_BAD_CONTENT_ENCODING:
-    return "Unrecognized or bad HTTP Content or Transfer-Encoding";
+    return _("Unrecognized or bad HTTP Content or Transfer-Encoding");
 
   case CURLE_FILESIZE_EXCEEDED:
-    return "Maximum file size exceeded";
+    return _("Maximum file size exceeded");
 
   case CURLE_USE_SSL_FAILED:
-    return "Requested SSL level failed";
+    return _("Requested SSL level failed");
 
   case CURLE_SSL_SHUTDOWN_FAILED:
-    return "Failed to shut down the SSL connection";
+    return _("Failed to shut down the SSL connection");
 
   case CURLE_SSL_CRL_BADFILE:
-    return "Failed to load CRL file (path? access rights?, format?)";
+    return _("Failed to load CRL file (path? access rights?, format?)");
 
   case CURLE_SSL_ISSUER_ERROR:
-    return "Issuer check against peer certificate failed";
+    return _("Issuer check against peer certificate failed");
 
   case CURLE_SEND_FAIL_REWIND:
-    return "Send failed since rewinding of the data stream failed";
+    return _("Send failed since rewinding of the data stream failed");
 
   case CURLE_LOGIN_DENIED:
-    return "Login denied";
+    return _("Login denied");
 
   case CURLE_TFTP_NOTFOUND:
-    return "TFTP: File Not Found";
+    return _("TFTP: File Not Found");
 
   case CURLE_TFTP_PERM:
-    return "TFTP: Access Violation";
+    return _("TFTP: Access Violation");
 
   case CURLE_REMOTE_DISK_FULL:
-    return "Disk full or allocation exceeded";
+    return _("Disk full or allocation exceeded");
 
   case CURLE_TFTP_ILLEGAL:
-    return "TFTP: Illegal operation";
+    return _("TFTP: Illegal operation");
 
   case CURLE_TFTP_UNKNOWNID:
-    return "TFTP: Unknown transfer ID";
+    return _("TFTP: Unknown transfer ID");
 
   case CURLE_REMOTE_FILE_EXISTS:
-    return "Remote file already exists";
+    return _("Remote file already exists");
 
   case CURLE_TFTP_NOSUCHUSER:
-    return "TFTP: No such user";
+    return _("TFTP: No such user");
 
   case CURLE_REMOTE_FILE_NOT_FOUND:
-    return "Remote file not found";
+    return _("Remote file not found");
 
   case CURLE_SSH:
-    return "Error in the SSH layer";
+    return _("Error in the SSH layer");
 
   case CURLE_AGAIN:
-    return "Socket not ready for send/recv";
+    return _("Socket not ready for send/recv");
 
   case CURLE_RTSP_CSEQ_ERROR:
-    return "RTSP CSeq mismatch or invalid CSeq";
+    return _("RTSP CSeq mismatch or invalid CSeq");
 
   case CURLE_RTSP_SESSION_ERROR:
-    return "RTSP session error";
+    return _("RTSP session error");
 
   case CURLE_FTP_BAD_FILE_LIST:
-    return "Unable to parse FTP file list";
+    return _("Unable to parse FTP file list");
 
   case CURLE_CHUNK_FAILED:
-    return "Chunk callback failed";
+    return _("Chunk callback failed");
 
   case CURLE_NO_CONNECTION_AVAILABLE:
-    return "The max connection limit is reached";
+    return _("The max connection limit is reached");
 
   case CURLE_SSL_PINNEDPUBKEYNOTMATCH:
-    return "SSL public key does not match pinned public key";
+    return _("SSL public key does not match pinned public key");
 
   case CURLE_SSL_INVALIDCERTSTATUS:
-    return "SSL server certificate status verification FAILED";
+    return _("SSL server certificate status verification FAILED");
 
   case CURLE_HTTP2_STREAM:
-    return "Stream error in the HTTP/2 framing layer";
+    return _("Stream error in the HTTP/2 framing layer");
 
   case CURLE_RECURSIVE_API_CALL:
-    return "API function called from within callback";
+    return _("API function called from within callback");
 
   case CURLE_AUTH_ERROR:
-    return "An authentication function returned an error";
+    return _("An authentication function returned an error");
 
   case CURLE_HTTP3:
-    return "HTTP/3 error";
+    return _("HTTP/3 error");
 
   case CURLE_QUIC_CONNECT_ERROR:
-    return "QUIC connection error";
+    return _("QUIC connection error");
 
   case CURLE_PROXY:
-    return "proxy handshake error";
+    return _("proxy handshake error");
 
   case CURLE_SSL_CLIENTCERT:
-    return "SSL Client Certificate required";
+    return _("SSL Client Certificate required");
 
   case CURLE_UNRECOVERABLE_POLL:
-    return "Unrecoverable error in select/poll";
+    return _("Unrecoverable error in select/poll");
 
   case CURLE_TOO_LARGE:
-    return "A value or data field grew larger than allowed";
+    return _("A value or data field grew larger than allowed");
 
   case CURLE_ECH_REQUIRED:
-    return "ECH attempted but failed";
+    return _("ECH attempted but failed");
 
     /* error codes not used by current libcurl */
   default:
@@ -333,12 +338,12 @@ curl_easy_strerror(CURLcode error)
    * The line number for the error will be near this comment, which is why it
    * is here, and not at the start of the switch.
    */
-  return "Unknown error";
+  return _("Unknown error");
 #else
   if(!error)
-    return "No error";
+    return _("No error");
   else
-    return "Error";
+    return _("Error");
 #endif
 }
 
@@ -348,57 +353,57 @@ curl_multi_strerror(CURLMcode error)
 #ifndef CURL_DISABLE_VERBOSE_STRINGS
   switch(error) {
   case CURLM_CALL_MULTI_PERFORM:
-    return "Please call curl_multi_perform() soon";
+    return _("Please call curl_multi_perform() soon");
 
   case CURLM_OK:
-    return "No error";
+    return _("No error");
 
   case CURLM_BAD_HANDLE:
-    return "Invalid multi handle";
+    return _("Invalid multi handle");
 
   case CURLM_BAD_EASY_HANDLE:
-    return "Invalid easy handle";
+    return _("Invalid easy handle");
 
   case CURLM_OUT_OF_MEMORY:
-    return "Out of memory";
+    return _("Out of memory");
 
   case CURLM_INTERNAL_ERROR:
-    return "Internal error";
+    return _("Internal error");
 
   case CURLM_BAD_SOCKET:
-    return "Invalid socket argument";
+    return _("Invalid socket argument");
 
   case CURLM_UNKNOWN_OPTION:
-    return "Unknown option";
+    return _("Unknown option");
 
   case CURLM_ADDED_ALREADY:
-    return "The easy handle is already added to a multi handle";
+    return _("The easy handle is already added to a multi handle");
 
   case CURLM_RECURSIVE_API_CALL:
-    return "API function called from within callback";
+    return _("API function called from within callback");
 
   case CURLM_WAKEUP_FAILURE:
-    return "Wakeup is unavailable or failed";
+    return _("Wakeup is unavailable or failed");
 
   case CURLM_BAD_FUNCTION_ARGUMENT:
-    return "A libcurl function was given a bad argument";
+    return _("A libcurl function was given a bad argument");
 
   case CURLM_ABORTED_BY_CALLBACK:
-    return "Operation was aborted by an application callback";
+    return _("Operation was aborted by an application callback");
 
   case CURLM_UNRECOVERABLE_POLL:
-    return "Unrecoverable error in select/poll";
+    return _("Unrecoverable error in select/poll");
 
   case CURLM_LAST:
     break;
   }
 
-  return "Unknown error";
+  return _("Unknown error");
 #else
   if(error == CURLM_OK)
-    return "No error";
+    return _("No error");
   else
-    return "Error";
+    return _("Error");
 #endif
 }
 
@@ -408,33 +413,33 @@ curl_share_strerror(CURLSHcode error)
 #ifndef CURL_DISABLE_VERBOSE_STRINGS
   switch(error) {
   case CURLSHE_OK:
-    return "No error";
+    return _("No error");
 
   case CURLSHE_BAD_OPTION:
-    return "Unknown share option";
+    return _("Unknown share option");
 
   case CURLSHE_IN_USE:
-    return "Share currently in use";
+    return _("Share currently in use");
 
   case CURLSHE_INVALID:
-    return "Invalid share handle";
+    return _("Invalid share handle");
 
   case CURLSHE_NOMEM:
-    return "Out of memory";
+    return _("Out of memory");
 
   case CURLSHE_NOT_BUILT_IN:
-    return "Feature not enabled in this library";
+    return _("Feature not enabled in this library");
 
   case CURLSHE_LAST:
     break;
   }
 
-  return "CURLSHcode unknown";
+  return _("CURLSHcode unknown");
 #else
   if(error == CURLSHE_OK)
-    return "No error";
+    return _("No error");
   else
-    return "Error";
+    return _("Error");
 #endif
 }
 
@@ -444,111 +449,111 @@ curl_url_strerror(CURLUcode error)
 #ifndef CURL_DISABLE_VERBOSE_STRINGS
   switch(error) {
   case CURLUE_OK:
-    return "No error";
+    return _("No error");
 
   case CURLUE_BAD_HANDLE:
-    return "An invalid CURLU pointer was passed as argument";
+    return _("An invalid CURLU pointer was passed as argument");
 
   case CURLUE_BAD_PARTPOINTER:
-    return "An invalid 'part' argument was passed as argument";
+    return _("An invalid 'part' argument was passed as argument");
 
   case CURLUE_MALFORMED_INPUT:
-    return "Malformed input to a URL function";
+    return _("Malformed input to a URL function");
 
   case CURLUE_BAD_PORT_NUMBER:
-    return "Port number was not a decimal number between 0 and 65535";
+    return _("Port number was not a decimal number between 0 and 65535");
 
   case CURLUE_UNSUPPORTED_SCHEME:
-    return "Unsupported URL scheme";
+    return _("Unsupported URL scheme");
 
   case CURLUE_URLDECODE:
-    return "URL decode error, most likely because of rubbish in the input";
+    return _("URL decode error, most likely because of rubbish in the input");
 
   case CURLUE_OUT_OF_MEMORY:
-    return "A memory function failed";
+    return _("A memory function failed");
 
   case CURLUE_USER_NOT_ALLOWED:
-    return "Credentials was passed in the URL when prohibited";
+    return _("Credentials was passed in the URL when prohibited");
 
   case CURLUE_UNKNOWN_PART:
-    return "An unknown part ID was passed to a URL API function";
+    return _("An unknown part ID was passed to a URL API function");
 
   case CURLUE_NO_SCHEME:
-    return "No scheme part in the URL";
+    return _("No scheme part in the URL");
 
   case CURLUE_NO_USER:
-    return "No user part in the URL";
+    return _("No user part in the URL");
 
   case CURLUE_NO_PASSWORD:
-    return "No password part in the URL";
+    return _("No password part in the URL");
 
   case CURLUE_NO_OPTIONS:
-    return "No options part in the URL";
+    return _("No options part in the URL");
 
   case CURLUE_NO_HOST:
-    return "No host part in the URL";
+    return _("No host part in the URL");
 
   case CURLUE_NO_PORT:
-    return "No port part in the URL";
+    return _("No port part in the URL");
 
   case CURLUE_NO_QUERY:
-    return "No query part in the URL";
+    return _("No query part in the URL");
 
   case CURLUE_NO_FRAGMENT:
-    return "No fragment part in the URL";
+    return _("No fragment part in the URL");
 
   case CURLUE_NO_ZONEID:
-    return "No zoneid part in the URL";
+    return _("No zoneid part in the URL");
 
   case CURLUE_BAD_LOGIN:
-    return "Bad login part";
+    return _("Bad login part");
 
   case CURLUE_BAD_IPV6:
-    return "Bad IPv6 address";
+    return _("Bad IPv6 address");
 
   case CURLUE_BAD_HOSTNAME:
-    return "Bad hostname";
+    return _("Bad hostname");
 
   case CURLUE_BAD_FILE_URL:
-    return "Bad file:// URL";
+    return _("Bad file:// URL");
 
   case CURLUE_BAD_SLASHES:
-    return "Unsupported number of slashes following scheme";
+    return _("Unsupported number of slashes following scheme");
 
   case CURLUE_BAD_SCHEME:
-    return "Bad scheme";
+    return _("Bad scheme");
 
   case CURLUE_BAD_PATH:
-    return "Bad path";
+    return _("Bad path");
 
   case CURLUE_BAD_FRAGMENT:
-    return "Bad fragment";
+    return _("Bad fragment");
 
   case CURLUE_BAD_QUERY:
-    return "Bad query";
+    return _("Bad query");
 
   case CURLUE_BAD_PASSWORD:
-    return "Bad password";
+    return _("Bad password");
 
   case CURLUE_BAD_USER:
-    return "Bad user";
+    return _("Bad user");
 
   case CURLUE_LACKS_IDN:
-    return "libcurl lacks IDN support";
+    return _("libcurl lacks IDN support");
 
   case CURLUE_TOO_LARGE:
-    return "A value or data field is larger than allowed";
+    return _("A value or data field is larger than allowed");
 
   case CURLUE_LAST:
     break;
   }
 
-  return "CURLUcode unknown";
+  return _("CURLUcode unknown");
 #else
   if(error == CURLUE_OK)
-    return "No error";
+    return _("No error");
   else
-    return "Error";
+    return _("Error");
 #endif
 }
 
@@ -576,167 +581,167 @@ get_winsock_error(int err, char *buf, size_t len)
 #else
   switch(err) {
   case WSAEINTR:
-    p = "Call interrupted";
+    p = _("Call interrupted");
     break;
   case WSAEBADF:
-    p = "Bad file";
+    p = _("Bad file");
     break;
   case WSAEACCES:
-    p = "Bad access";
+    p = _("Bad access");
     break;
   case WSAEFAULT:
-    p = "Bad argument";
+    p = _("Bad argument");
     break;
   case WSAEINVAL:
-    p = "Invalid arguments";
+    p = _("Invalid arguments");
     break;
   case WSAEMFILE:
-    p = "Out of file descriptors";
+    p = _("Out of file descriptors");
     break;
   case WSAEWOULDBLOCK:
-    p = "Call would block";
+    p = _("Call would block");
     break;
   case WSAEINPROGRESS:
   case WSAEALREADY:
-    p = "Blocking call in progress";
+    p = _("Blocking call in progress");
     break;
   case WSAENOTSOCK:
-    p = "Descriptor is not a socket";
+    p = _("Descriptor is not a socket");
     break;
   case WSAEDESTADDRREQ:
-    p = "Need destination address";
+    p = _("Need destination address");
     break;
   case WSAEMSGSIZE:
-    p = "Bad message size";
+    p = _("Bad message size");
     break;
   case WSAEPROTOTYPE:
-    p = "Bad protocol";
+    p = _("Bad protocol");
     break;
   case WSAENOPROTOOPT:
-    p = "Protocol option is unsupported";
+    p = _("Protocol option is unsupported");
     break;
   case WSAEPROTONOSUPPORT:
-    p = "Protocol is unsupported";
+    p = _("Protocol is unsupported");
     break;
   case WSAESOCKTNOSUPPORT:
-    p = "Socket is unsupported";
+    p = _("Socket is unsupported");
     break;
   case WSAEOPNOTSUPP:
-    p = "Operation not supported";
+    p = _("Operation not supported");
     break;
   case WSAEAFNOSUPPORT:
-    p = "Address family not supported";
+    p = _("Address family not supported");
     break;
   case WSAEPFNOSUPPORT:
-    p = "Protocol family not supported";
+    p = _("Protocol family not supported");
     break;
   case WSAEADDRINUSE:
-    p = "Address already in use";
+    p = _("Address already in use");
     break;
   case WSAEADDRNOTAVAIL:
-    p = "Address not available";
+    p = _("Address not available");
     break;
   case WSAENETDOWN:
-    p = "Network down";
+    p = _("Network down");
     break;
   case WSAENETUNREACH:
-    p = "Network unreachable";
+    p = _("Network unreachable");
     break;
   case WSAENETRESET:
-    p = "Network has been reset";
+    p = _("Network has been reset");
     break;
   case WSAECONNABORTED:
-    p = "Connection was aborted";
+    p = _("Connection was aborted");
     break;
   case WSAECONNRESET:
-    p = "Connection was reset";
+    p = _("Connection was reset");
     break;
   case WSAENOBUFS:
-    p = "No buffer space";
+    p = _("No buffer space");
     break;
   case WSAEISCONN:
-    p = "Socket is already connected";
+    p = _("Socket is already connected");
     break;
   case WSAENOTCONN:
-    p = "Socket is not connected";
+    p = _("Socket is not connected");
     break;
   case WSAESHUTDOWN:
-    p = "Socket has been shut down";
+    p = _("Socket has been shut down");
     break;
   case WSAETOOMANYREFS:
-    p = "Too many references";
+    p = _("Too many references");
     break;
   case WSAETIMEDOUT:
-    p = "Timed out";
+    p = _("Timed out");
     break;
   case WSAECONNREFUSED:
-    p = "Connection refused";
+    p = _("Connection refused");
     break;
   case WSAELOOP:
-    p = "Loop??";
+    p = _("Loop??");
     break;
   case WSAENAMETOOLONG:
-    p = "Name too long";
+    p = _("Name too long");
     break;
   case WSAEHOSTDOWN:
-    p = "Host down";
+    p = _("Host down");
     break;
   case WSAEHOSTUNREACH:
-    p = "Host unreachable";
+    p = _("Host unreachable");
     break;
   case WSAENOTEMPTY:
-    p = "Not empty";
+    p = _("Not empty");
     break;
   case WSAEPROCLIM:
-    p = "Process limit reached";
+    p = _("Process limit reached");
     break;
   case WSAEUSERS:
-    p = "Too many users";
+    p = _("Too many users");
     break;
   case WSAEDQUOT:
-    p = "Bad quota";
+    p = _("Bad quota");
     break;
   case WSAESTALE:
-    p = "Something is stale";
+    p = _("Something is stale");
     break;
   case WSAEREMOTE:
-    p = "Remote error";
+    p = _("Remote error");
     break;
 #ifdef WSAEDISCON  /* missing in SalfordC! */
   case WSAEDISCON:
-    p = "Disconnected";
+    p = _("Disconnected");
     break;
 #endif
     /* Extended Winsock errors */
   case WSASYSNOTREADY:
-    p = "Winsock library is not ready";
+    p = _("Winsock library is not ready");
     break;
   case WSANOTINITIALISED:
-    p = "Winsock library not initialised";
+    p = _("Winsock library not initialised");
     break;
   case WSAVERNOTSUPPORTED:
-    p = "Winsock version not supported";
+    p = _("Winsock version not supported");
     break;
 
     /* getXbyY() errors (already handled in herrmsg):
      * Authoritative Answer: Host not found */
   case WSAHOST_NOT_FOUND:
-    p = "Host not found";
+    p = _("Host not found");
     break;
 
     /* Non-Authoritative: Host not found, or SERVERFAIL */
   case WSATRY_AGAIN:
-    p = "Host not found, try again";
+    p = _("Host not found, try again");
     break;
 
     /* Non recoverable errors, FORMERR, REFUSED, NOTIMP */
   case WSANO_RECOVERY:
-    p = "Unrecoverable error in call to nameserver";
+    p = _("Unrecoverable error in call to nameserver");
     break;
 
     /* Valid name, no data record of requested type */
   case WSANO_DATA:
-    p = "No data record of requested type";
+    p = _("No data record of requested type");
     break;
 
   default:
@@ -799,7 +804,7 @@ const char *Curl_strerror(int err, char *buf, size_t buflen)
       !get_winsock_error(err, buf, buflen) &&
 #endif
       !curlx_get_winapi_error(err, buf, buflen))
-      curl_msnprintf(buf, buflen, "Unknown error %d (%#x)", err, err);
+      curl_msnprintf(buf, buflen, _("Unknown error %d (%#x)"), err, err);
   }
 #else /* not Windows coming up */
 
@@ -811,7 +816,7 @@ const char *Curl_strerror(int err, char *buf, size_t buflen)
   */
   if(strerror_r(err, buf, buflen)) {
     if('\0' == buf[0])
-      curl_msnprintf(buf, buflen, "Unknown error %d", err);
+      curl_msnprintf(buf, buflen, _("Unknown error %d"), err);
   }
 #elif defined(HAVE_STRERROR_R) && defined(HAVE_GLIBC_STRERROR_R)
  /*
@@ -825,7 +830,7 @@ const char *Curl_strerror(int err, char *buf, size_t buflen)
     if(msg)
       curl_msnprintf(buf, buflen, "%s", msg);
     else
-      curl_msnprintf(buf, buflen, "Unknown error %d", err);
+      curl_msnprintf(buf, buflen, _("Unknown error %d"), err);
   }
 #else
   {
@@ -834,7 +839,7 @@ const char *Curl_strerror(int err, char *buf, size_t buflen)
     if(msg)
       curl_msnprintf(buf, buflen, "%s", msg);
     else
-      curl_msnprintf(buf, buflen, "Unknown error %d", err);
+      curl_msnprintf(buf, buflen, _("Unknown error %d"), err);
   }
 #endif
 
@@ -881,7 +886,7 @@ const char *Curl_sspi_strerror(int err, char *buf, size_t buflen)
 
   switch(err) {
     case SEC_E_OK:
-      txt = "No error";
+      txt = _("No error");
       break;
 #define SEC2TXT(sec) case sec: txt = #sec; break
     SEC2TXT(CRYPT_E_REVOKED);
@@ -969,29 +974,29 @@ const char *Curl_sspi_strerror(int err, char *buf, size_t buflen)
     SEC2TXT(SEC_I_RENEGOTIATE);
     SEC2TXT(SEC_I_SIGNATURE_NEEDED);
     default:
-      txt = "Unknown error";
+      txt = _("Unknown error");
   }
 
   if(err == SEC_E_ILLEGAL_MESSAGE) {
     curl_msnprintf(buf, buflen,
-                   "SEC_E_ILLEGAL_MESSAGE (0x%08X) - This error usually "
+                   _("SEC_E_ILLEGAL_MESSAGE (0x%08X) - This error usually "
                    "occurs when a fatal SSL/TLS alert is received (e.g. "
                    "handshake failed). More detail may be available in "
-                   "the Windows System event log.", err);
+                   "the Windows System event log."), err);
   }
   else {
     char msgbuf[256];
     if(curlx_get_winapi_error(err, msgbuf, sizeof(msgbuf)))
-      curl_msnprintf(buf, buflen, "%s (0x%08X) - %s", txt, err, msgbuf);
+      curl_msnprintf(buf, buflen, _("%s (0x%08X) - %s"), txt, err, msgbuf);
     else
-      curl_msnprintf(buf, buflen, "%s (0x%08X)", txt, err);
+      curl_msnprintf(buf, buflen, _("%s (0x%08X)"), txt, err);
   }
 
 #else
   if(err == SEC_E_OK)
-    txt = "No error";
+    txt = _("No error");
   else
-    txt = "Error";
+    txt = _("Error");
   if(buflen > strlen(txt))
     strcpy(buf, txt);
 #endif

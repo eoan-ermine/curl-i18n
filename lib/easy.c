@@ -44,6 +44,10 @@
 #include <sys/param.h>
 #endif
 
+#ifdef USE_GETTEXT
+#include <libintl.h>
+#endif
+
 #include "urldata.h"
 #include <curl/curl.h>
 #include "transfer.h"
@@ -195,6 +199,10 @@ static CURLcode global_init(long flags, bool memoryfuncs)
     DEBUGF(fprintf(stderr, "Error: Curl_ssh_init failed\n"));
     goto fail;
   }
+
+#ifdef USE_GETTEXT
+  bindtextdomain(LIBCURL_NAME, LOCALE_DIR);
+#endif
 
   easy_init_flags = flags;
 

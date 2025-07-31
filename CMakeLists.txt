@@ -2037,6 +2037,20 @@ if(HAVE_MANUAL_TOOLS)
   add_subdirectory(docs)
 endif()
 
+option(USE_GETTEXT "Use gettext for internationalization support" ON)
+set(HAVE_GETTEXT OFF)
+if(USE_GETTEXT)
+  find_package(Intl)
+  if(Intl_FOUND)
+    set(CURL_LIBS ${Intl_LIBRARIES} ${CURL_LIBS})
+    list(APPEND CURL_LIBDIRS ${Intl_LIBRARY})
+    include_directories(SYSTEM ${Intl_INCLUDE_DIRS})
+    link_directories(${Intl_LIBRARY})
+    set(HAVE_GETTEXT 1)
+    set(LOCALE_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
+  endif()
+endif()
+
 add_subdirectory(scripts)  # for shell completions
 
 list(REMOVE_DUPLICATES CURL_LIBDIRS)
